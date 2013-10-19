@@ -1,13 +1,13 @@
 package main
 
-import "./graph"
+import "../graph"
 import "fmt"
 
 func main() {
 
 	g := graph.CreateGraph(false)
 
-	g.ReadGraph("graph.txt")
+	g.ReadGraph("data/graph.txt")
 
 	fmt.Println("Shortest Path between vertex 6 and 4\n")
 

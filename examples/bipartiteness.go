@@ -1,6 +1,6 @@
 package main
 
-import "./graph"
+import "../graph"
 import "fmt"
 
 const (
@@ -53,7 +53,7 @@ func BipartitenessTest(g *graph.Graph) bool {
 func main() {
 
 	g := graph.CreateGraph(false)
-	g.ReadGraph("graph-bipartite.txt")
+	g.ReadGraph("data/graph-bipartite.txt")
 
 	bipartite := BipartitenessTest(g)
 

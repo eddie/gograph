@@ -1,6 +1,6 @@
 package main
 
-import "./graph"
+import "../graph"
 import "fmt"
 
 func ConnectedComponents(g *graph.Graph) {
@@ -31,7 +31,7 @@ func ConnectedComponents(g *graph.Graph) {
 func main() {
 
 	g := graph.CreateGraph(false)
-	g.ReadGraph("graph-multi-component.txt")
+	g.ReadGraph("data/graph-multi-component.txt")
 
 	ConnectedComponents(g)
 

@@ -1,6 +1,6 @@
 package main
 
-import "./graph"
+import "../graph"
 import "fmt"
 
 func ProcessEdge(x, y int, state *graph.TraversalState) {
@@ -16,7 +16,7 @@ func ProcessEdge(x, y int, state *graph.TraversalState) {
 func main() {
 
 	g := graph.CreateGraph(false)
-	g.ReadGraph("graph-multi-component.txt")
+	g.ReadGraph("data/graph-multi-component.txt")
 
 	var state *graph.TraversalState
 	var funcs *graph.TraversalFuncs = &graph.TraversalFuncs{Edge: ProcessEdge}
