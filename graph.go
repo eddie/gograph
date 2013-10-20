@@ -31,18 +31,30 @@ type Graph struct {
 
 func CreateGraph(directed bool) (g *Graph) {
 
-	g = &Graph{
-		make([]*Edgenode, 10, MAXVERT),
-		make([]int, 10, MAXVERT),
+	return &Graph{
+		make([]*Edgenode, MAXVERT),
+		make([]int, MAXVERT),
 		0,
 		0,
 		directed,
 	}
-
-	return g
 }
 
 func (g *Graph) InsertEdge(x, y int, directed bool) {
+
+	// Resize slices
+	// TODO: Rework this code
+	if x >= cap(g.edges) || y >= cap(g.edges) {
+
+		nsize := (cap(g.edges) + 1) * 2
+		t := make([]*Edgenode, nsize)
+		copy(t, g.edges)
+		g.edges = t
+
+		s := make([]int, nsize)
+		copy(s, g.degree)
+		g.degree = s
+	}
 
 	edgenode := &Edgenode{y, 0, nil}
 	edgenode.next = g.edges[x]

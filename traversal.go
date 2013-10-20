@@ -34,14 +34,20 @@ func (f *TraversalFuncs) ProcessEdge(x, y int, s *TraversalState) {
 	}
 }
 
-func InitTraversalState() (s *TraversalState) {
+func InitTraversalState(g *Graph) (s *TraversalState) {
+
+	// TODO: Rework this
+	size := MAXVERT
+	if g != nil {
+		size = len(g.edges)
+	}
 
 	return &TraversalState{
-		make([]bool, 10, MAXVERT),
-		make([]bool, 10, MAXVERT),
-		make([]int, 10, MAXVERT),
-		make([]int, 10, MAXVERT),
-		make([]int, 10, MAXVERT),
+		make([]bool, size),
+		make([]bool, size),
+		make([]int, size),
+		make([]int, size),
+		make([]int, size),
 		0,
 		false,
 	}
@@ -50,7 +56,7 @@ func InitTraversalState() (s *TraversalState) {
 func (g *Graph) BFS(start int, funcs *TraversalFuncs, state *TraversalState) {
 
 	if state == nil {
-		state = InitTraversalState()
+		state = InitTraversalState(g)
 	}
 
 	q := NewQueue(20)
@@ -92,7 +98,7 @@ func (g *Graph) BFS(start int, funcs *TraversalFuncs, state *TraversalState) {
 func (g *Graph) DFS(v int, funcs *TraversalFuncs, state *TraversalState) {
 
 	if state == nil {
-		state = InitTraversalState()
+		state = InitTraversalState(g)
 	}
 
 	if state.finished {
@@ -145,7 +151,7 @@ func (g *Graph) FindPathExt(start, end int, cb func(int), parents []int) {
 
 func (g *Graph) FindPath(start, end int, cb func(int)) {
 
-	var state *TraversalState = InitTraversalState()
+	var state *TraversalState = InitTraversalState(g)
 	var funcs *TraversalFuncs = &TraversalFuncs{}
 
 	g.BFS(start, funcs, state)
